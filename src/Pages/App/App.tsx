@@ -31,7 +31,7 @@ function App():JSX.Element {
 
   return (
     <>
-    <ShoppingCartProvider>
+    <ShoppingCartProvider>{/* sirve para indicar que todos los componentes que esten dentro de esta etiqueta pueden tener acceso a los valores que tiene este context*/}
     <BrowserRouter>{/*  <BrowserRouter> sirve para redireccionar las paginas*/}
     <Navbar></Navbar>
     <SideMenu></SideMenu>

@@ -7,7 +7,7 @@ import { ShoppingCartContext } from '../../Context'
 
 const ProductDetail= ()=>{
     const context = useContext(ShoppingCartContext)
-    console.log('Product .', context.mostrarProducto);
+  
     
 return(
     <aside className= {`${context.detalleProductoAbierto ? 'flex' : 'hidden'} product-detail  flex-col fixed right-0 border border-black rounded bg-white`}>
