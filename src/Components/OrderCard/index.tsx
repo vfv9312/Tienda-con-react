@@ -1,8 +1,8 @@
 import { XCircleIcon } from '@heroicons/react/24/solid'
-import PropTypes from 'prop-types'
+
 
 const OrderCard = props => {
-    const { title, imageUrl, price} = props;//es una variable que tiene todo lo que se recibe de props solo con los valores seleccionados
+    const {id, title, imageUrl, price, handleDelete} = props;//es una variable que tiene todo lo que se recibe de props solo con los valores seleccionados
     console.log('imageUrl:', imageUrl);
 return(
 <div className="flex justify-between items-center mb-2">
@@ -12,7 +12,7 @@ return(
         </figure>
     </div>
     <p className=' text-lg font-medium'>{price}</p>
-    <XCircleIcon className="h-6 w-6 text-black mb-4 hover:cursor-pointer" />
+    <XCircleIcon onClick={()=>(handleDelete(id))} className="h-6 w-6 text-black mb-4 hover:cursor-pointer" />
 </div>);
 }
 

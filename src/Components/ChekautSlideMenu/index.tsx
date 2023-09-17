@@ -3,6 +3,7 @@ import './style.css'
 import { XCircleIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 import OrderCard from "../OrderCard";
+import { TotalPrice } from "../../utilis";
 
 interface ObjetosApi {category:string;
     image:string;
@@ -12,7 +13,11 @@ interface ObjetosApi {category:string;
 
 const SideMenu= ()=>{
     const context = useContext(ShoppingCartContext)!
-    console.log('cart2', context.cartProducts);
+    
+    const handleDelete = (id) => {
+        const filterdProducts = context.cartProducts.filter(product => product.id != id)
+        context.setCartProducts(filterdProducts)
+    }
    
 return(
     <aside className= {`${context.sideMenuAbierto ? 'flex' : 'hidden'} side-menu  flex-col z-10 fixed right-0 border border-black rounded bg-white`}>
@@ -25,11 +30,20 @@ return(
             context.cartProducts.map((product)=>(
                 <OrderCard
                 key={product.id}
+                id={product.id}
                 title={product.title}
                 imageUrl={product.image}
-                price={product.price}/>
+                price={product.price}
+                handleDelete={() => handleDelete(product.id)}
+                />
                 ) )
         }</div>
+        <div className='px-6'>
+            <p className='flex justify-between items-center'>
+                <span className='font-light'>Total :</span>
+                <span className=' font-medium text-2xl'>${TotalPrice(context.cartProducts)}</span>
+            </p>
+        </div>
     </aside>
 )
 }
