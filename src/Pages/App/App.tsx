@@ -19,6 +19,8 @@ const AppRputes:React.FC<{}> = () => {
     {path: '/my-account',  element: < MyAccount/>},
     {path: '/my-order',  element: < MyOrder/>},
     {path: '/my-orders',  element: < MyOrders/>},
+    {path: '/my-orders/last',  element: < MyOrder/>},
+    {path: '/my-orders/:id',  element: < MyOrder/>},
     {path: '/*',  element: < NotFound/>},// el * significa que cualquier otra /pagina enviara a notfound
     {path: '/signin',  element: <Signin/>}
   ])

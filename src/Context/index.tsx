@@ -18,6 +18,8 @@ interface ContenidoContext {
     sideMenuAbierto:boolean;
     openSideMenu:() => void;
     closeSideMenu:() => void;
+    order:[];
+    setOrder:()=> void;
 }
 
 //interface TypeContext extends React.Context<ContenidoContext>
@@ -52,6 +54,9 @@ export const ShoppingCartProvider:React.FunctionComponent<Props>= ({children}:Pr
     const [sideMenuAbierto, setSideMenuAbierto] = useState(false);
     const openSideMenu= () => setSideMenuAbierto(true);
     const closeSideMenu = () => setSideMenuAbierto(false);
+
+    //Order
+    const [order, setOrder] = useState([]);
     
     return (<ShoppingCartContext.Provider value={{//al crear esta etiqueta le damos en value las variables y estados que usaremos para estar compartiendo informacion con cada componente
         contador,//exportamos usando context el valor para que lo agarre el componente que lo necesite en ese caso para aunmentar 1 cada que compre 1 articulo
@@ -65,7 +70,9 @@ export const ShoppingCartProvider:React.FunctionComponent<Props>= ({children}:Pr
         setCartProducts,
         sideMenuAbierto,
         openSideMenu,
-        closeSideMenu
+        closeSideMenu,
+        order,
+        setOrder
     }}>
         {children/* children es un a variable especial que indica que todos los componenetes dentro pueden estar ahi*/}
         </ShoppingCartContext.Provider>)//tenemos que cerrar la etiqueta provider para que aqui se almacenen los estados de valores en este contexto
