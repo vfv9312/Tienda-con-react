@@ -5,34 +5,44 @@ import { ShoppingCartIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 
 
 
-interface ObjetosApi {category:string;
-    image:string;
-     title:string;
-      price:number;
-       description:string}
+
+
+       interface PropsApi {
+        data: PropsProduct
+      }
+
+      interface PropsProduct {
+        id: number; 
+        category: string;
+        image: string;
+        title: string;
+        price: number;
+        description: string;
+      }
 
        interface ClickEvent extends React.MouseEvent<HTMLDivElement, MouseEvent> {}
       
 
 
-const Card = (data:ObjetosApi) =>{//data lo recibimos de Home que es de donde llamamos a la api con todos los datos
+const Card = (data:PropsApi) =>{//data lo recibimos de Home que es de donde llamamos a la api con todos los datos
+    const context = useContext(ShoppingCartContext)
 
-    const context = useContext(ShoppingCartContext)!
+    
 
-    const showProduct = (productDetail:ObjetosApi) => {
+    const showProduct:(productDetail:PropsApi) =>void = (productDetail) => {
         context.openProductDetail()
         context.setMostrarProducto(productDetail)
     }
 
-    const addProductsToCart = (evento:ClickEvent, productData:ObjetosApi) => {//recibimos los valores de la accion click del boton agregar compra y producData que es los objetos que recibimos del api
+    const addProductsToCart = (evento:ClickEvent, productData:PropsProduct) => {//recibimos los valores de la accion click del boton agregar compra y producData que es los objetos que recibimos del api
         evento.stopPropagation()//stopPropagation es un metodo del evento click para que no se duplique la informacion
         {context.setContador(context.contador + 1)}//aumentamos en 1 al darle click agregar compra
         context.setCartProducts([...context.cartProducts, productData])// pasamos el valor individualmente para no clonar solo referencias del de cada producto que agreguemos al carrito el primer valor es el array actual y el segundo es el nuevo
         context.openSideMenu()
     }
 
-    const retornaIcon = (id) => {
-        const isInCart = context.cartProducts.filter(product => product.id === id).length > 0
+    const retornaIcon = (id:number) => {
+        const isInCart = context.cartProducts.filter((product:PropsProduct) => product.id === id).length > 0
         if (isInCart) {
             return(
                 <div className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">

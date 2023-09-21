@@ -7,6 +7,8 @@ import { ShoppingCartContext } from '../../Context'
 
 const ProductDetail= ()=>{
     const context = useContext(ShoppingCartContext)
+   
+    
   
     
 return(

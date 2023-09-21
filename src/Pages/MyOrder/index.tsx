@@ -7,7 +7,7 @@ import OrderCard from "../../Components/OrderCard";
 import Layout from "../../Components/Layout";
 function MyOrder():JSX.Element {
     const context = useContext(ShoppingCartContext)!
-    console.log(context.order);
+    
     return(
        
         <Layout>

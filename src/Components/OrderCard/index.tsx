@@ -1,7 +1,14 @@
 import { XCircleIcon } from '@heroicons/react/24/solid'
 
+interface PropsProduct {
+    id: number; 
+    imageUrl: string;
+    title: string;
+    price: number;
+    handleDelete: (id:number)=>void;
+  }
 
-const OrderCard = props => {
+const OrderCard:(props:PropsProduct) => JSX.Element = props => {
     const {id, title, imageUrl, price, handleDelete} = props;//es una variable que tiene todo lo que se recibe de props solo con los valores seleccionados
     let renderXCircleIcon;
     if (handleDelete) {

@@ -7,17 +7,21 @@ import OrderCard from "../OrderCard";
 import { TotalPrice } from "../../utilis";
 
 
-interface ObjetosApi {category:string;
+interface ObjetosApi {
+    id:number;
+    category:string;
     image:string;
      title:string;
       price:number;
-       description:string}
+       description:string
+       handleDelete:(product:{id:number})=>void
+    }
 
 const SideMenu= ()=>{
     const context = useContext(ShoppingCartContext)!
     
-    const handleDelete = (id) => {
-        const filterdProducts = context.cartProducts.filter(product => product.id != id)
+    const handleDelete = (id:number) => {
+        const filterdProducts = context.cartProducts.filter((product:ObjetosApi)=> product.id != id)
         context.setCartProducts(filterdProducts)
     }
     function handleCheckout() {
@@ -40,7 +44,7 @@ return(
         </div>
         <div className=' px-6 overflow-y-scroll flex-1'>
         {
-            context.cartProducts.map((product)=>(
+            context.cartProducts.map((product:ObjetosApi)=>(
                 <OrderCard
                 key={product.id}
                 id={product.id}
